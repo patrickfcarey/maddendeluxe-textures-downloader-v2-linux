@@ -5,30 +5,22 @@ Where this fork stands and what to do next. Rewritten, not appended: the running
 
 ---
 
-## RESUME HERE (2026-09-21)
+## RESUME HERE (2026-09-22)
 
-**Two branches are waiting on the owner. Neither is pushed.** Both carry the `dm4800/` device
-prefix: the fleet push guard refuses any branch pushed from this machine without it, and it
-refused the first real run of the command below for exactly that reason.
+**PR #6 is open upstream and waiting on the mod author to merge:**
+https://github.com/maddendeluxe/maddendeluxe-textures-downloader-v2/pull/6, from
+`patrickfcarey:dm4800/ci-opener-regression-tests`, head `7548a80`, one commit. It adds the CI tests
+that would have caught the SteamOS link bug. Opened by the owner 2026-09-22 04:34 UTC. GitHub
+records Patrick Carey as author and committer; no attribution lines. Its `validate` job passed in
+12 s, which is the first run of `check-versions.py` and the opener's `--self-test` and `--source`
+on GitHub's own runner. The twelve build jobs were queued when this was written; the worker log
+records their result. When it merges, nothing further is owed for it.
 
-1. `dm4800/ci-opener-regression-tests`, tip `7548a80`, one commit over `upstream/main`. The CI
-   tests that would have caught the SteamOS link bug. Dry run of the hand-off passed, and the push
-   guard's own decision, run offline against this branch and remote, allows it. The checkout must
-   be ON this branch when the command runs. From the owner's own terminal:
-
-   ```
-   bash /mnt/c/GitHub/fleet-toolkit/tools/open_pr.sh \
-     --repo /mnt/c/GitHub/maddendeluxe-textures-downloader-v2-linux \
-     --upstream maddendeluxe/maddendeluxe-textures-downloader-v2 \
-     --branch dm4800/ci-opener-regression-tests --expect-commits 1 --base main --remote origin \
-     --title "CI: prove the AppImage opens links through the system opener" \
-     --body-file /mnt/c/GitHub/_outbound/maddendeluxe-ci-opener-tests-pr-body.md
-   ```
-
-2. `dm4800/handoff-and-worker-log`, one commit over `upstream/main`: this file, `worker_log.md`,
-   `AGENTS.md` and `.gitattributes`. These are fork-operational files. Whether they go to the
-   mod author's repo or only to the fork's own `main` is the owner's call; nothing is prepared
-   for upstream.
+**One branch is still waiting on the owner, unpushed:** `dm4800/handoff-and-worker-log`, this
+file, `worker_log.md`, `AGENTS.md` and `.gitattributes`. These are fork-operational files. Whether
+they go to the mod author's repo or only to the fork's own `main` is the owner's call; nothing is
+prepared for upstream. Every branch pushed from this machine needs the `dm4800/` prefix, or the
+fleet push guard refuses it.
 
 **Nothing else is in flight.** The link fix (PR #5) is merged upstream and the build on main was
 green for all twelve jobs.
@@ -81,5 +73,6 @@ green for all twelve jobs.
 
 ## Still owed
 
-- The owner opens the CI-tests PR (command above) and decides where the handoff branch goes.
+- The mod author merges PR #6.
+- The owner decides where `dm4800/handoff-and-worker-log` goes.
 - Optional: identify what the rig's `~/madden-linux-test/pr4.AppImage` was built from.

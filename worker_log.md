@@ -81,3 +81,10 @@ carry no **Starting** line because none was written at the time.*
 - **Checked:** the push guard's allow table names this repo and its `origin`; the guard's own decision, run offline by piping the renamed branch's ref line into the deployed `pre-push` hook, exits 0. The hand-off dry run with `--branch dm4800/ci-opener-regression-tests` passes and plans `git push -u origin refs/heads/dm4800/ci-opener-regression-tests`.
 - **Found:** I should have caught this before handing the owner the command. The same prefix rule had refused a push in `emulator-release-repo` the day before, and the hand-off's `--dry-run` does not exercise the push guard, so a green dry run said nothing about it. Next time, run the guard's decision offline before calling a command ready.
 - **Next / needs:** the owner re-runs the command in `handoff.md`.
+
+### 2026-09-22 — dm4800/handoff-and-worker-log — PR #6 opened upstream; its checks
+- **Starting:** owner: "its been opened." About to verify the PR on GitHub, record it in `handoff.md`, and watch its CI through to the end, since this is the first time the new checks run on GitHub's runner rather than the NAS container.
+- **Did:** confirmed PR #6 (https://github.com/maddendeluxe/maddendeluxe-textures-downloader-v2/pull/6), head `7548a80`, opened 2026-09-22 04:34 UTC. `handoff.md` RESUME HERE rewritten: PR #6 waiting on the mod author, the handoff branch still waiting on the owner. A background watch polls the checks until none is pending, then reads the opener step's output from each Linux job log.
+- **Checked:** GitHub records Patrick Carey as author and committer of `7548a80`; the PR body has no attribution lines. `validate` passed in 12 s, which covers `check-versions.py`, `check-appimage-opener.py --self-test` and `--source`. The twelve build jobs were pending at the time of writing: their result is NOT recorded in this entry; it belongs in the next one.
+- **Found:** nothing wrong so far.
+- **Next / needs:** record the build jobs' result, in particular whether each Linux job printed `OPENER CHECK GREEN (1 checked)`.
