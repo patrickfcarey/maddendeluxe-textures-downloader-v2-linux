@@ -5,24 +5,27 @@ Where this fork stands and what to do next. Rewritten, not appended: the running
 
 ---
 
-## RESUME HERE (2026-09-20)
+## RESUME HERE (2026-09-21)
 
-**Two branches are waiting on the owner. Neither is pushed.**
+**Two branches are waiting on the owner. Neither is pushed.** Both carry the `dm4800/` device
+prefix: the fleet push guard refuses any branch pushed from this machine without it, and it
+refused the first real run of the command below for exactly that reason.
 
-1. `ci-opener-regression-tests`, tip `7548a80`, one commit over `upstream/main`. The CI tests
-   that would have caught the SteamOS link bug. Dry run of the hand-off passed. From the owner's
-   own terminal:
+1. `dm4800/ci-opener-regression-tests`, tip `7548a80`, one commit over `upstream/main`. The CI
+   tests that would have caught the SteamOS link bug. Dry run of the hand-off passed, and the push
+   guard's own decision, run offline against this branch and remote, allows it. The checkout must
+   be ON this branch when the command runs. From the owner's own terminal:
 
    ```
    bash /mnt/c/GitHub/fleet-toolkit/tools/open_pr.sh \
      --repo /mnt/c/GitHub/maddendeluxe-textures-downloader-v2-linux \
      --upstream maddendeluxe/maddendeluxe-textures-downloader-v2 \
-     --branch ci-opener-regression-tests --expect-commits 1 --base main --remote origin \
+     --branch dm4800/ci-opener-regression-tests --expect-commits 1 --base main --remote origin \
      --title "CI: prove the AppImage opens links through the system opener" \
      --body-file /mnt/c/GitHub/_outbound/maddendeluxe-ci-opener-tests-pr-body.md
    ```
 
-2. `handoff-and-worker-log`, one commit over `upstream/main`: this file, `worker_log.md`,
+2. `dm4800/handoff-and-worker-log`, one commit over `upstream/main`: this file, `worker_log.md`,
    `AGENTS.md` and `.gitattributes`. These are fork-operational files. Whether they go to the
    mod author's repo or only to the fork's own `main` is the owner's call; nothing is prepared
    for upstream.
