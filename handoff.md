@@ -7,23 +7,27 @@ Where this fork stands and what to do next. Rewritten, not appended: the running
 
 ## RESUME HERE (2026-09-22)
 
-**PR #6 is open upstream and waiting on the mod author to merge:**
-https://github.com/maddendeluxe/maddendeluxe-textures-downloader-v2/pull/6, from
-`patrickfcarey:dm4800/ci-opener-regression-tests`, head `7548a80`, one commit. It adds the CI tests
-that would have caught the SteamOS link bug. Opened by the owner 2026-09-22 04:34 UTC. GitHub
-records Patrick Carey as author and committer; no attribution lines. Its `validate` job passed in
-12 s, which is the first run of `check-versions.py` and the opener's `--self-test` and `--source`
-on GitHub's own runner. The twelve build jobs were queued when this was written; the worker log
-records their result. When it merges, nothing further is owed for it.
+**The fork's `main` is ready locally and waiting on the owner to push it.** It is `upstream/main`
+plus four fork-only commits: the worker log, handoff and agent guide, two handoff updates, and the
+derive pipeline in `tools/upstream/`. The fork is public, so pushing it is the owner's keystroke.
+`origin/main` is still at `214cff5` ("05 support"), from before any of this fork's work, so the
+push also brings the fork's own `main` up to date with upstream. The fleet push guard, asked
+offline, allows it; `main` needs no device prefix. From the owner's own terminal:
 
-**One branch is still waiting on the owner, unpushed:** `dm4800/handoff-and-worker-log`, this
-file, `worker_log.md`, `AGENTS.md` and `.gitattributes`. These are fork-operational files. Whether
-they go to the mod author's repo or only to the fork's own `main` is the owner's call; nothing is
-prepared for upstream. Every branch pushed from this machine needs the `dm4800/` prefix, or the
-fleet push guard refuses it.
+```
+git -C /mnt/c/GitHub/maddendeluxe-textures-downloader-v2-linux push origin main
+```
 
-**Nothing else is in flight.** The link fix (PR #5) is merged upstream and the build on main was
-green for all twelve jobs.
+**PR #6 is open upstream, all thirteen checks green, waiting on the mod author:**
+https://github.com/maddendeluxe/maddendeluxe-textures-downloader-v2/pull/6, head `7548a80`, one
+commit, the CI tests that would have caught the SteamOS link bug. It predates the pipeline, so it
+has no ledger row. When it merges, run `git merge upstream/main` on `main`.
+
+**The next change for upstream goes through the pipeline.** `AGENTS.md`, "Proposing work
+upstream", is the whole procedure; `tools/upstream/derive-pr.py --self-test` proves it. Never cut a
+pull request for the mod author by hand from this `main`: it carries the fork-only files.
+
+**Nothing else is in flight.**
 
 ## State (OBSERVED 2026-09-20)
 
@@ -73,6 +77,6 @@ green for all twelve jobs.
 
 ## Still owed
 
-- The mod author merges PR #6.
-- The owner decides where `dm4800/handoff-and-worker-log` goes.
+- The owner pushes the fork's `main` (command above).
+- The mod author merges PR #6; then `git merge upstream/main` on `main`.
 - Optional: identify what the rig's `~/madden-linux-test/pr4.AppImage` was built from.

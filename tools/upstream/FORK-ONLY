@@ -1,0 +1,13 @@
+# Paths that exist only in this fork and never go upstream. One per line, relative to the
+# repo root; a directory covers everything under it. derive-pr.py removes these from the
+# derive BEFORE anything else looks at it, so they cannot ride along in a pull request, and
+# it refuses a --paths entry that names one of them.
+#
+# Add a line here in the same commit that adds a fork-only file. A fork-only file missing
+# from this list is still caught, but later and less kindly: as a stray path outside --paths,
+# or by the tripwire that refuses a worker_log.md or handoff.md anywhere in the tree.
+worker_log.md
+handoff.md
+AGENTS.md
+.gitattributes
+tools/upstream
